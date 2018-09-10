@@ -1,7 +1,7 @@
-package ddd.repository
+package orm.repository
 
-import com.example.jooq.Tables.AUTHORS
-import com.example.jooq.tables.records.AuthorsRecord
+import orm.jooq.Tables.AUTHORS
+import orm.jooq.tables.records.AuthorsRecord
 import org.jooq.DSLContext
 import org.springframework.stereotype.Component
 

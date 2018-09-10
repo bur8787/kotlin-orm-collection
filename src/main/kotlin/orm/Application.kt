@@ -1,4 +1,4 @@
-package ddd
+package orm
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

@@ -1,6 +1,6 @@
-package ddd.web
+package orm.web
 
-import ddd.repository.AuthorRepository
+import orm.repository.AuthorRepository
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 

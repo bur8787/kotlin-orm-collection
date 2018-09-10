@@ -78,7 +78,7 @@ jooq {
 				excludes = ''
 			}
 			target {
-				packageName = 'com.example.jooq'
+				packageName = 'orm.jooq'
 				directory = 'src/main/generated-jooq/'
 			}
 		}
