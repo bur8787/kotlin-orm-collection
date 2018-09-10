@@ -4,15 +4,20 @@
 package com.example.jooq.tables;
 
 
+import com.example.jooq.Indexes;
 import com.example.jooq.Keys;
 import com.example.jooq.Public;
 import com.example.jooq.tables.records.BooksRecord;
+
+import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Schema;
@@ -35,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Books extends TableImpl<BooksRecord> {
 
-    private static final long serialVersionUID = 1927397759;
+    private static final long serialVersionUID = -550906384;
 
     /**
      * The reference instance of <code>PUBLIC.books</code>
@@ -54,6 +59,11 @@ public class Books extends TableImpl<BooksRecord> {
      * The column <code>PUBLIC.books.id</code>.
      */
     public final TableField<BooksRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+
+    /**
+     * The column <code>PUBLIC.books.author_id</code>.
+     */
+    public final TableField<BooksRecord, Integer> AUTHOR_ID = createField("author_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>PUBLIC.books.name</code>.
@@ -99,6 +109,14 @@ public class Books extends TableImpl<BooksRecord> {
     @Override
     public Schema getSchema() {
         return Public.PUBLIC;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Index> getIndexes() {
+        return Arrays.<Index>asList(Indexes.CONSTRAINT_INDEX_5);
     }
 
     /**

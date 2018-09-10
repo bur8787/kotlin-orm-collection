@@ -4,15 +4,20 @@
 package com.example.jooq.tables;
 
 
+import com.example.jooq.Indexes;
 import com.example.jooq.Keys;
 import com.example.jooq.Public;
 import com.example.jooq.tables.records.AuthorsRecord;
+
+import java.util.Arrays;
+import java.util.List;
 
 import javax.annotation.Generated;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Identity;
+import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Schema;
@@ -35,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Authors extends TableImpl<AuthorsRecord> {
 
-    private static final long serialVersionUID = -66166110;
+    private static final long serialVersionUID = -1019621959;
 
     /**
      * The reference instance of <code>PUBLIC.authors</code>
@@ -99,6 +104,14 @@ public class Authors extends TableImpl<AuthorsRecord> {
     @Override
     public Schema getSchema() {
         return Public.PUBLIC;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Index> getIndexes() {
+        return Arrays.<Index>asList(Indexes.CONSTRAINT_INDEX_D);
     }
 
     /**
