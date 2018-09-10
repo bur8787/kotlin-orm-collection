@@ -42,6 +42,10 @@ repositories {
 	mavenCentral()
 }
 
+sourceSets {
+	main.kotlin.srcDirs += 'src/main/kotlin'
+	main.kotlin.srcDirs += 'src/main/generated-jooq'
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-jooq')
@@ -60,7 +64,7 @@ jooq {
 	orm(sourceSets.main) {
 		jdbc {
 			driver = 'org.h2.Driver'
-			url = 'jdbc:h2:~/orm;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE;MODE=MYSQL'
+			url = 'jdbc:h2:~/orm;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=TRUE;MODE=MYSQL;DATABASE_TO_UPPER=false'
 			user = 'sa'
 			password = ''
 		}
@@ -69,11 +73,12 @@ jooq {
 			database {
 				name = 'org.jooq.meta.h2.H2Database'
 				inputSchema = 'public'
+				outputSchema = 'PUBLIC'
 				includes = '.*'
 				excludes = ''
 			}
 			target {
-				packageName = 'jooq'
+				packageName = 'com.example.jooq'
 				directory = 'src/main/generated-jooq/'
 			}
 		}
