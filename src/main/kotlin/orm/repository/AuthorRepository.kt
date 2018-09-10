@@ -1,7 +1,7 @@
 package orm.repository
 
-import orm.jooq.tables.records.AuthorsRecord
+import orm.domain.Author
 
 interface AuthorRepository {
-    fun getAuthor(): AuthorsRecord
+    fun getAuthor(id :Int): Author
 }

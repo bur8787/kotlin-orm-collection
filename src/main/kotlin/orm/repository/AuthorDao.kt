@@ -1,14 +1,34 @@
 package orm.repository
 
-import orm.jooq.Tables.AUTHORS
-import orm.jooq.tables.records.AuthorsRecord
 import org.jooq.DSLContext
 import org.springframework.stereotype.Component
+import orm.domain.Author
+import orm.domain.Book
+import orm.jooq.Tables.AUTHORS
+import orm.jooq.Tables.BOOKS
+import orm.jooq.tables.records.AuthorsRecord
+import orm.jooq.tables.records.BooksRecord
 
 @Component
 class AuthorDao(private val create: DSLContext) : AuthorRepository {
 
-    override fun getAuthor(): AuthorsRecord {
-        return create.selectFrom(AUTHORS).where(AUTHORS.ID.eq(1)).fetchOne()
+    override fun getAuthor(id: Int): Author {
+        return create.select(AUTHORS.fields().asList())
+                .select(BOOKS.fields().asList())
+                .from(AUTHORS)
+                .join(BOOKS).on(AUTHORS.ID.eq(BOOKS.AUTHOR_ID))
+                .where(AUTHORS.ID.eq(id))
+                .fetchGroups(
+                        { r -> r.into(AUTHORS) },
+                        { r -> r.into(BOOKS) }
+                ).entries.first().let {
+            fromRow(it)
+        }
     }
+
+    private fun fromRow(m: Map.Entry<AuthorsRecord, List<BooksRecord>>) = Author(
+            id = m.key.id,
+            name = m.key.name,
+            books = m.value.map { Book(id = it.id, name = it.name) }
+    )
 }
