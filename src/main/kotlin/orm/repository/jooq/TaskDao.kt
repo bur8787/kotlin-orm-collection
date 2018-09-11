@@ -9,11 +9,11 @@ import orm.repository.TaskRepository
 
 @Repository
 class TaskDao(private val create: DSLContext) : TaskRepository {
-    override fun findByUserIdAndProjectId(userId: Int, projectId: Int): List<Task> {
+    override fun findByProjectId(projectId: Int): List<Task> {
         return create.selectFrom(TASKS)
-                .where(TASKS.ASSIGNED_TO.eq(userId).and(TASKS.PROJECT_ID.eq(projectId)))
+                .where(TASKS.PROJECT_ID.eq(projectId))
                 .fetch { fromRow(it) }
     }
 
-    private fun fromRow(r: TasksRecord) = Task(id = r.id, name = r.name, status = r.status)
+    private fun fromRow(r: TasksRecord) = Task(id = r.id, name = r.name, status = r.status, assignedTo = r.assignedTo)
 }
