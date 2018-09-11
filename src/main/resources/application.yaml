@@ -4,7 +4,6 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password:
-    platform: h2
     continue-on-error: true
   h2:
     console:
