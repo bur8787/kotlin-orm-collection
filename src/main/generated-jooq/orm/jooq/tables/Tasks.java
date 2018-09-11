@@ -41,7 +41,7 @@ import orm.jooq.tables.records.TasksRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tasks extends TableImpl<TasksRecord> {
 
-    private static final long serialVersionUID = -1759351284;
+    private static final long serialVersionUID = -230772646;
 
     /**
      * The reference instance of <code>PUBLIC.tasks</code>
@@ -65,6 +65,11 @@ public class Tasks extends TableImpl<TasksRecord> {
      * The column <code>PUBLIC.tasks.project_id</code>.
      */
     public final TableField<TasksRecord, Integer> PROJECT_ID = createField("project_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+
+    /**
+     * The column <code>PUBLIC.tasks.assigned_to</code>.
+     */
+    public final TableField<TasksRecord, Integer> ASSIGNED_TO = createField("assigned_to", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>PUBLIC.tasks.status</code>.

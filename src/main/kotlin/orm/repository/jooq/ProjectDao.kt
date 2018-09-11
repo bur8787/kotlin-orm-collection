@@ -1,0 +1,36 @@
+package orm.repository.jooq
+
+import org.jooq.DSLContext
+import org.springframework.stereotype.Component
+import orm.domain.Project
+import orm.jooq.Tables.*
+import orm.jooq.tables.records.ProjectsRecord
+import orm.jooq.tables.records.UsersRecord
+import orm.repository.ProjectRepository
+
+@Component
+class ProjectDao(private val create: DSLContext) : ProjectRepository {
+    override fun getProjects(userId: Int): List<Project> {
+        return create.select(PROJECTS.fields().asList())
+                .select(USERS.fields().asList())
+                .from(PROJECTS)
+                .join(USER_TO_PROJECT).on(PROJECTS.ID.eq(USER_TO_PROJECT.PROJECT_ID))
+                .join(USERS).on(USERS.ID.eq(USER_TO_PROJECT.USER_ID))
+                .where(USERS.ID.eq(userId))
+                .fetchGroups(
+                        { r -> r.into(USERS) },
+                        { r -> r.into(PROJECTS) }
+                ).entries.first().let {
+            fromRow(it)
+        }
+    }
+
+    private fun fromRow(m: Map.Entry<UsersRecord, List<ProjectsRecord>>): List<Project> {
+        return m.value.map {
+            Project(
+                    id = it.id,
+                    name = it.name
+            )
+        }
+    }
+}

@@ -1,6 +1,6 @@
 package orm.domain
 
 data class Project(
-        val id: String,
+        val id: Int,
         val name: String
 )
