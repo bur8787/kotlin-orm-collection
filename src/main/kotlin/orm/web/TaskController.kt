@@ -10,7 +10,7 @@ class TaskController(private val taskRepository: TaskRepository) {
 
     @GetMapping("/projects/{projectId}/tasks")
     fun getTask(@PathVariable("projectId") projectId: Int): TaskResponse {
-        return taskRepository.getTasks(1, projectId).let {
+        return taskRepository.findByUserIdAndProjectId(1, projectId).let {
             TaskResponse(
                     tasks = it.map {
                         TaskModel(id = it.id, name = it.name, status = it.status)

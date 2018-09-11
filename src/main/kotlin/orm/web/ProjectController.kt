@@ -9,7 +9,7 @@ class ProjectController(private val projectRepository: ProjectRepository) {
 
     @GetMapping("/projects/own")
     fun getAuthor(): OwnProjectsResponse {
-        return projectRepository.getProjects(1).let {
+        return projectRepository.findByUserId(1).let {
             OwnProjectsResponse(
                     projects = it.map {
                         ProjectModel(id = it.id, name = it.name)

@@ -1,7 +1,7 @@
 package orm.repository.jooq
 
 import org.jooq.DSLContext
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Repository
 import orm.domain.Author
 import orm.domain.Book
 import orm.jooq.Tables.AUTHORS
@@ -10,10 +10,10 @@ import orm.jooq.tables.records.AuthorsRecord
 import orm.jooq.tables.records.BooksRecord
 import orm.repository.AuthorRepository
 
-@Component
+@Repository
 class AuthorDao(private val create: DSLContext) : AuthorRepository {
 
-    override fun getAuthor(id: Int): Author {
+    override fun findById(id: Int): Author {
         return create.select(AUTHORS.fields().asList())
                 .select(BOOKS.fields().asList())
                 .from(AUTHORS)

@@ -1,16 +1,16 @@
 package orm.repository.jooq
 
 import org.jooq.DSLContext
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Repository
 import orm.domain.Project
 import orm.jooq.Tables.*
 import orm.jooq.tables.records.ProjectsRecord
 import orm.jooq.tables.records.UsersRecord
 import orm.repository.ProjectRepository
 
-@Component
+@Repository
 class ProjectDao(private val create: DSLContext) : ProjectRepository {
-    override fun getProjects(userId: Int): List<Project> {
+    override fun findByUserId(userId: Int): List<Project> {
         return create.select(PROJECTS.fields().asList())
                 .select(USERS.fields().asList())
                 .from(PROJECTS)

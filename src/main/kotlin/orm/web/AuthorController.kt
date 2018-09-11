@@ -10,7 +10,7 @@ class AuthorController(private val authorRepository: AuthorRepository) {
 
     @GetMapping("/author/{authorId}")
     fun getAuthor(@PathVariable("authorId") authorId: Int): AuthorResponse {
-        return authorRepository.getAuthor(authorId).let {
+        return authorRepository.findById(authorId).let {
             AuthorResponse(
                     id = it.id,
                     name = it.name,
