@@ -12,6 +12,10 @@ import org.jooq.impl.Internal;
 
 import orm.jooq.tables.Authors;
 import orm.jooq.tables.Books;
+import orm.jooq.tables.Projects;
+import orm.jooq.tables.Tasks;
+import orm.jooq.tables.UserToProject;
+import orm.jooq.tables.Users;
 
 
 /**
@@ -34,6 +38,13 @@ public class Indexes {
     public static final Index PRIMARY_KEY_D = Indexes0.PRIMARY_KEY_D;
     public static final Index CONSTRAINT_INDEX_5 = Indexes0.CONSTRAINT_INDEX_5;
     public static final Index PRIMARY_KEY_5 = Indexes0.PRIMARY_KEY_5;
+    public static final Index PRIMARY_KEY_C = Indexes0.PRIMARY_KEY_C;
+    public static final Index CONSTRAINT_INDEX_6 = Indexes0.CONSTRAINT_INDEX_6;
+    public static final Index PRIMARY_KEY_69 = Indexes0.PRIMARY_KEY_69;
+    public static final Index CONSTRAINT_INDEX_C = Indexes0.CONSTRAINT_INDEX_C;
+    public static final Index CONSTRAINT_INDEX_C4 = Indexes0.CONSTRAINT_INDEX_C4;
+    public static final Index PRIMARY_KEY_C4 = Indexes0.PRIMARY_KEY_C4;
+    public static final Index PRIMARY_KEY_6 = Indexes0.PRIMARY_KEY_6;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -43,5 +54,12 @@ public class Indexes {
         public static Index PRIMARY_KEY_D = Internal.createIndex("primary_key_d", Authors.AUTHORS, new OrderField[] { Authors.AUTHORS.ID }, true);
         public static Index CONSTRAINT_INDEX_5 = Internal.createIndex("constraint_index_5", Books.BOOKS, new OrderField[] { Books.BOOKS.AUTHOR_ID }, false);
         public static Index PRIMARY_KEY_5 = Internal.createIndex("primary_key_5", Books.BOOKS, new OrderField[] { Books.BOOKS.ID }, true);
+        public static Index PRIMARY_KEY_C = Internal.createIndex("primary_key_c", Projects.PROJECTS, new OrderField[] { Projects.PROJECTS.ID }, true);
+        public static Index CONSTRAINT_INDEX_6 = Internal.createIndex("constraint_index_6", Tasks.TASKS, new OrderField[] { Tasks.TASKS.PROJECT_ID }, false);
+        public static Index PRIMARY_KEY_69 = Internal.createIndex("primary_key_69", Tasks.TASKS, new OrderField[] { Tasks.TASKS.ID }, true);
+        public static Index CONSTRAINT_INDEX_C = Internal.createIndex("constraint_index_c", UserToProject.USER_TO_PROJECT, new OrderField[] { UserToProject.USER_TO_PROJECT.USER_ID }, false);
+        public static Index CONSTRAINT_INDEX_C4 = Internal.createIndex("constraint_index_c4", UserToProject.USER_TO_PROJECT, new OrderField[] { UserToProject.USER_TO_PROJECT.PROJECT_ID }, false);
+        public static Index PRIMARY_KEY_C4 = Internal.createIndex("primary_key_c4", UserToProject.USER_TO_PROJECT, new OrderField[] { UserToProject.USER_TO_PROJECT.USER_ID, UserToProject.USER_TO_PROJECT.PROJECT_ID }, true);
+        public static Index PRIMARY_KEY_6 = Internal.createIndex("primary_key_6", Users.USERS, new OrderField[] { Users.USERS.ID }, true);
     }
 }

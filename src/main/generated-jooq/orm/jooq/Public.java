@@ -16,6 +16,10 @@ import org.jooq.impl.SchemaImpl;
 
 import orm.jooq.tables.Authors;
 import orm.jooq.tables.Books;
+import orm.jooq.tables.Projects;
+import orm.jooq.tables.Tasks;
+import orm.jooq.tables.UserToProject;
+import orm.jooq.tables.Users;
 
 
 /**
@@ -31,7 +35,7 @@ import orm.jooq.tables.Books;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-    private static final long serialVersionUID = 488789846;
+    private static final long serialVersionUID = 858003256;
 
     /**
      * The reference instance of <code>PUBLIC</code>
@@ -47,6 +51,26 @@ public class Public extends SchemaImpl {
      * The table <code>PUBLIC.books</code>.
      */
     public final Books BOOKS = orm.jooq.tables.Books.BOOKS;
+
+    /**
+     * The table <code>PUBLIC.projects</code>.
+     */
+    public final Projects PROJECTS = orm.jooq.tables.Projects.PROJECTS;
+
+    /**
+     * The table <code>PUBLIC.tasks</code>.
+     */
+    public final Tasks TASKS = orm.jooq.tables.Tasks.TASKS;
+
+    /**
+     * The table <code>PUBLIC.user_to_project</code>.
+     */
+    public final UserToProject USER_TO_PROJECT = orm.jooq.tables.UserToProject.USER_TO_PROJECT;
+
+    /**
+     * The table <code>PUBLIC.users</code>.
+     */
+    public final Users USERS = orm.jooq.tables.Users.USERS;
 
     /**
      * No further instances allowed
@@ -74,6 +98,10 @@ public class Public extends SchemaImpl {
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
             Authors.AUTHORS,
-            Books.BOOKS);
+            Books.BOOKS,
+            Projects.PROJECTS,
+            Tasks.TASKS,
+            UserToProject.USER_TO_PROJECT,
+            Users.USERS);
     }
 }

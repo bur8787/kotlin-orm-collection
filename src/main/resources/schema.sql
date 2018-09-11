@@ -11,3 +11,33 @@ CREATE TABLE IF NOT EXISTS books (
   PRIMARY KEY (id),
   FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(50) NOT NULL,
+  email VARCHAR(200) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS projects (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(20) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS user_to_project (
+  user_id INT NOT NULL,
+  project_id INT NOT NULL,
+  PRIMARY KEY (user_id, project_id),
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS tasks (
+  id INT NOT NULL AUTO_INCREMENT,
+  project_id INT NOT NULL,
+  status INT NOT NULL,
+  name VARCHAR(20) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
+);

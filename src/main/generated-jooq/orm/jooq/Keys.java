@@ -13,8 +13,16 @@ import org.jooq.impl.Internal;
 
 import orm.jooq.tables.Authors;
 import orm.jooq.tables.Books;
+import orm.jooq.tables.Projects;
+import orm.jooq.tables.Tasks;
+import orm.jooq.tables.UserToProject;
+import orm.jooq.tables.Users;
 import orm.jooq.tables.records.AuthorsRecord;
 import orm.jooq.tables.records.BooksRecord;
+import orm.jooq.tables.records.ProjectsRecord;
+import orm.jooq.tables.records.TasksRecord;
+import orm.jooq.tables.records.UserToProjectRecord;
+import orm.jooq.tables.records.UsersRecord;
 
 
 /**
@@ -37,6 +45,9 @@ public class Keys {
 
     public static final Identity<AuthorsRecord, Integer> IDENTITY_AUTHORS = Identities0.IDENTITY_AUTHORS;
     public static final Identity<BooksRecord, Integer> IDENTITY_BOOKS = Identities0.IDENTITY_BOOKS;
+    public static final Identity<ProjectsRecord, Integer> IDENTITY_PROJECTS = Identities0.IDENTITY_PROJECTS;
+    public static final Identity<TasksRecord, Integer> IDENTITY_TASKS = Identities0.IDENTITY_TASKS;
+    public static final Identity<UsersRecord, Integer> IDENTITY_USERS = Identities0.IDENTITY_USERS;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
@@ -44,12 +55,19 @@ public class Keys {
 
     public static final UniqueKey<AuthorsRecord> CONSTRAINT_D = UniqueKeys0.CONSTRAINT_D;
     public static final UniqueKey<BooksRecord> CONSTRAINT_5 = UniqueKeys0.CONSTRAINT_5;
+    public static final UniqueKey<ProjectsRecord> CONSTRAINT_C = UniqueKeys0.CONSTRAINT_C;
+    public static final UniqueKey<TasksRecord> CONSTRAINT_69 = UniqueKeys0.CONSTRAINT_69;
+    public static final UniqueKey<UserToProjectRecord> CONSTRAINT_C4 = UniqueKeys0.CONSTRAINT_C4;
+    public static final UniqueKey<UsersRecord> CONSTRAINT_6 = UniqueKeys0.CONSTRAINT_6;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
     public static final ForeignKey<BooksRecord, AuthorsRecord> CONSTRAINT_59 = ForeignKeys0.CONSTRAINT_59;
+    public static final ForeignKey<TasksRecord, ProjectsRecord> CONSTRAINT_690 = ForeignKeys0.CONSTRAINT_690;
+    public static final ForeignKey<UserToProjectRecord, UsersRecord> CONSTRAINT_C4A = ForeignKeys0.CONSTRAINT_C4A;
+    public static final ForeignKey<UserToProjectRecord, ProjectsRecord> CONSTRAINT_C4A8 = ForeignKeys0.CONSTRAINT_C4A8;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -58,14 +76,24 @@ public class Keys {
     private static class Identities0 {
         public static Identity<AuthorsRecord, Integer> IDENTITY_AUTHORS = Internal.createIdentity(Authors.AUTHORS, Authors.AUTHORS.ID);
         public static Identity<BooksRecord, Integer> IDENTITY_BOOKS = Internal.createIdentity(Books.BOOKS, Books.BOOKS.ID);
+        public static Identity<ProjectsRecord, Integer> IDENTITY_PROJECTS = Internal.createIdentity(Projects.PROJECTS, Projects.PROJECTS.ID);
+        public static Identity<TasksRecord, Integer> IDENTITY_TASKS = Internal.createIdentity(Tasks.TASKS, Tasks.TASKS.ID);
+        public static Identity<UsersRecord, Integer> IDENTITY_USERS = Internal.createIdentity(Users.USERS, Users.USERS.ID);
     }
 
     private static class UniqueKeys0 {
         public static final UniqueKey<AuthorsRecord> CONSTRAINT_D = Internal.createUniqueKey(Authors.AUTHORS, "constraint_d", Authors.AUTHORS.ID);
         public static final UniqueKey<BooksRecord> CONSTRAINT_5 = Internal.createUniqueKey(Books.BOOKS, "constraint_5", Books.BOOKS.ID);
+        public static final UniqueKey<ProjectsRecord> CONSTRAINT_C = Internal.createUniqueKey(Projects.PROJECTS, "constraint_c", Projects.PROJECTS.ID);
+        public static final UniqueKey<TasksRecord> CONSTRAINT_69 = Internal.createUniqueKey(Tasks.TASKS, "constraint_69", Tasks.TASKS.ID);
+        public static final UniqueKey<UserToProjectRecord> CONSTRAINT_C4 = Internal.createUniqueKey(UserToProject.USER_TO_PROJECT, "constraint_c4", UserToProject.USER_TO_PROJECT.USER_ID, UserToProject.USER_TO_PROJECT.PROJECT_ID);
+        public static final UniqueKey<UsersRecord> CONSTRAINT_6 = Internal.createUniqueKey(Users.USERS, "constraint_6", Users.USERS.ID);
     }
 
     private static class ForeignKeys0 {
         public static final ForeignKey<BooksRecord, AuthorsRecord> CONSTRAINT_59 = Internal.createForeignKey(orm.jooq.Keys.CONSTRAINT_D, Books.BOOKS, "constraint_59", Books.BOOKS.AUTHOR_ID);
+        public static final ForeignKey<TasksRecord, ProjectsRecord> CONSTRAINT_690 = Internal.createForeignKey(orm.jooq.Keys.CONSTRAINT_C, Tasks.TASKS, "constraint_690", Tasks.TASKS.PROJECT_ID);
+        public static final ForeignKey<UserToProjectRecord, UsersRecord> CONSTRAINT_C4A = Internal.createForeignKey(orm.jooq.Keys.CONSTRAINT_6, UserToProject.USER_TO_PROJECT, "constraint_c4a", UserToProject.USER_TO_PROJECT.USER_ID);
+        public static final ForeignKey<UserToProjectRecord, ProjectsRecord> CONSTRAINT_C4A8 = Internal.createForeignKey(orm.jooq.Keys.CONSTRAINT_C, UserToProject.USER_TO_PROJECT, "constraint_c4a8", UserToProject.USER_TO_PROJECT.PROJECT_ID);
     }
 }

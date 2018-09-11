@@ -1,4 +1,4 @@
-package orm.repository
+package orm.repository.jooq
 
 import org.jooq.DSLContext
 import org.springframework.stereotype.Component
@@ -8,6 +8,7 @@ import orm.jooq.Tables.AUTHORS
 import orm.jooq.Tables.BOOKS
 import orm.jooq.tables.records.AuthorsRecord
 import orm.jooq.tables.records.BooksRecord
+import orm.repository.AuthorRepository
 
 @Component
 class AuthorDao(private val create: DSLContext) : AuthorRepository {

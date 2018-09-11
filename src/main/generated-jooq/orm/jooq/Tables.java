@@ -8,6 +8,10 @@ import javax.annotation.Generated;
 
 import orm.jooq.tables.Authors;
 import orm.jooq.tables.Books;
+import orm.jooq.tables.Projects;
+import orm.jooq.tables.Tasks;
+import orm.jooq.tables.UserToProject;
+import orm.jooq.tables.Users;
 
 
 /**
@@ -32,4 +36,24 @@ public class Tables {
      * The table <code>PUBLIC.books</code>.
      */
     public static final Books BOOKS = orm.jooq.tables.Books.BOOKS;
+
+    /**
+     * The table <code>PUBLIC.projects</code>.
+     */
+    public static final Projects PROJECTS = orm.jooq.tables.Projects.PROJECTS;
+
+    /**
+     * The table <code>PUBLIC.tasks</code>.
+     */
+    public static final Tasks TASKS = orm.jooq.tables.Tasks.TASKS;
+
+    /**
+     * The table <code>PUBLIC.user_to_project</code>.
+     */
+    public static final UserToProject USER_TO_PROJECT = orm.jooq.tables.UserToProject.USER_TO_PROJECT;
+
+    /**
+     * The table <code>PUBLIC.users</code>.
+     */
+    public static final Users USERS = orm.jooq.tables.Users.USERS;
 }
