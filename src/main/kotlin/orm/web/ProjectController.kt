@@ -7,7 +7,7 @@ import orm.repository.ProjectRepository
 @RestController
 class ProjectController(private val projectRepository: ProjectRepository) {
 
-    @GetMapping("/projects/own")
+    @GetMapping("/projects")
     fun getAuthor(): OwnProjectsResponse {
         return projectRepository.findByUserId(1).let {
             OwnProjectsResponse(

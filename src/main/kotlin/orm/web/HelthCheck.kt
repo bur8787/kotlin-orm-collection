@@ -5,8 +5,7 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-class HelloController {
-
+class HelthCheck {
     @GetMapping("/helth")
     fun hello() = Unit
 }
