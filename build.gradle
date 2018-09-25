@@ -44,7 +44,7 @@ repositories {
 
 sourceSets {
 	main.kotlin.srcDirs += 'src/main/kotlin'
-	main.kotlin.srcDirs += 'src/main/generated-jooq'
+	main.kotlin.srcDirs += 'src/main/jooq-generate'
 }
 
 dependencies {
@@ -79,7 +79,7 @@ jooq {
 			}
 			target {
 				packageName = 'orm.jooq'
-				directory = 'src/main/generated-jooq/'
+				directory = 'src/main/jooq-generate/'
 			}
 		}
 	}
