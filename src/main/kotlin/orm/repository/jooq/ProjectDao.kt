@@ -10,6 +10,11 @@ import orm.repository.ProjectRepository
 
 @Repository
 class ProjectDao(private val create: DSLContext) : ProjectRepository {
+
+    override fun create(project: Project): Project {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun findByUserId(userId: Int): List<Project> {
         return create.select(PROJECTS.fields().asList())
                 .select(USERS.fields().asList())
@@ -29,7 +34,9 @@ class ProjectDao(private val create: DSLContext) : ProjectRepository {
         return m.value.map {
             Project(
                     id = it.id,
-                    name = it.name
+                    title = it.name,
+                    subTitle = "",
+                    logoUrl = ""
             )
         }
     }
