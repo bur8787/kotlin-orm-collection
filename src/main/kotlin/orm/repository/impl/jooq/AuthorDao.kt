@@ -1,4 +1,4 @@
-package orm.repository.jooq
+package orm.repository.impl.jooq
 
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
