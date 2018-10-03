@@ -70,12 +70,14 @@ dependencies {
 
     compile 'com.google.cloud:google-cloud-datastore:+'
 
+    compile 'com.google.cloud:google-cloud-firestore:+'
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 appengine{
     deploy{
-        projectId = "fukaru-210509"
+        projectId = "orm-test-218215"
         version = "1"
     }
 }

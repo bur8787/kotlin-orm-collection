@@ -1,13 +1,11 @@
 package orm.repository.impl.datastore
 
 import com.google.appengine.api.datastore.*
-import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Repository
 import orm.domain.Project
 import orm.domain.Task
 import orm.repository.TaskRepository
 
-@Primary
 @Repository
 class TaskRepositoryDao(private val datastore: DatastoreService) : TaskRepository {
 
