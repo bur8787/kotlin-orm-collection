@@ -11,7 +11,7 @@ class TaskRepositoryDao(private val datastore: DatastoreService) : TaskRepositor
 
     private val kind = "Task"
 
-    override fun create(task: Task): Task {
+    override fun create(projectId: Int, task: Task): Task {
         return datastore.put(taskToEntity(task = task)).let {
             findById(it.id)
         }
@@ -37,7 +37,6 @@ class TaskRepositoryDao(private val datastore: DatastoreService) : TaskRepositor
 //        val entity = if (key != null) Entity(key) else Entity(kind, task.id.toLong())
         val entity = Entity(kind)
         entity.let {
-            it.setProperty(Task::projectId.name, task.projectId)
             it.setProperty(Task::name.name, task.name)
         }
         return entity
@@ -45,7 +44,7 @@ class TaskRepositoryDao(private val datastore: DatastoreService) : TaskRepositor
 
     private fun fromEntity(entity: Entity): Task {
         return Task(
-                id = entity.key.id,
+//                id = entity.key.id,
                 name = entity.getProperty(Task::name.name) as String,
                 assignedTo = 0,
                 status = 0

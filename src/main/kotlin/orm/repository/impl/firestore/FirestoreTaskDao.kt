@@ -11,14 +11,12 @@ import java.util.*
 @Repository
 class FirestoreTaskDao(private val fireStore: Firestore) : TaskRepository {
 
-    override fun create(task: Task): Task {
-        val docRef = fireStore.collection("users").document(task.name)
-        val data = HashMap<String, Any>()
-        data["first"] = task.name
-        data["last"] = "Lovelace"
-        data["born"] = 1815
-        val result = docRef.set(data)
-        return Task(name = task.name)
+    override fun create(projectId: Int, task: Task): Task {
+        fireStore.collection("projectCollection")
+                .document(projectId.toString())
+                .collection("tasks")
+                .add(task)
+        return task
     }
 
     override fun findById(taskId: Long): Task {

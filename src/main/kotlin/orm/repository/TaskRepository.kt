@@ -3,7 +3,7 @@ package orm.repository
 import orm.domain.Task
 
 interface TaskRepository {
-    fun create(task: Task): Task
+    fun create(projectId: Int, task: Task): Task
 
     fun findById(taskId: Long): Task
 

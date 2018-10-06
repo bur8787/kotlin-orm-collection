@@ -12,7 +12,12 @@ class TaskController(private val taskRepository: TaskRepository) {
         return taskRepository.findByProjectId(projectId).let {
             TaskResponse(
                     tasks = it.map {
-                        TaskModel(id = it.id, name = it.name, status = it.status, assignedTo = it.assignedTo)
+                        TaskModel(
+//                                id = it.id,
+                                name = it.name,
+                                status = it.status,
+                                assignedTo = it.assignedTo
+                        )
                     }
             )
         }
@@ -24,13 +29,13 @@ class TaskController(private val taskRepository: TaskRepository) {
             @RequestBody req: TaskRequest
     ): TaskModel {
         return taskRepository.create(
-                Task(
-                        name = req.name,
-                        projectId = projectId
+                projectId = projectId,
+                task = Task(
+                        name = req.name
                 )
         ).let {
             TaskModel(
-                    id = it.id,
+//                    id = it.id,
                     name = it.name,
                     status = it.status,
                     assignedTo = it.assignedTo
@@ -48,7 +53,7 @@ class TaskRequest(
 )
 
 class TaskModel(
-        val id: Long,
+        val id: Long = 0,
         val name: String,
         val status: Int,
         val assignedTo: Int

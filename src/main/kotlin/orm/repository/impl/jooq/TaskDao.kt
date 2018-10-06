@@ -10,7 +10,7 @@ import orm.repository.TaskRepository
 @Repository
 class TaskDao(private val create: DSLContext) : TaskRepository {
 
-    override fun create(task: Task): Task {
+    override fun create(projectId: Int ,task: Task): Task {
         return create.insertInto(TASKS)
                 .set(TASKS.NAME, task.name)
                 .returning()
@@ -32,5 +32,10 @@ class TaskDao(private val create: DSLContext) : TaskRepository {
                 .fetch { fromRow(it) }
     }
 
-    private fun fromRow(r: TasksRecord) = Task(id = r.id.toLong(), name = r.name, status = r.status, assignedTo = r.assignedTo)
+    private fun fromRow(r: TasksRecord) = Task(
+//            id = r.id.toLong(),
+            name = r.name,
+            status = r.status,
+            assignedTo = r.assignedTo
+    )
 }

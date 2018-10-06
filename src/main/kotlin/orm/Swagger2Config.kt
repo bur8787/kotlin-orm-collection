@@ -32,7 +32,7 @@ class Swagger2Config {
 
     private fun apiInfo(): ApiInfo {
         return ApiInfo(
-                "Task Manager Web API", // title
+                "Task Manager Web API", // name
                 "Task Manager Web API", // description
                 "0.0.1", // version
                 "", // terms of service url

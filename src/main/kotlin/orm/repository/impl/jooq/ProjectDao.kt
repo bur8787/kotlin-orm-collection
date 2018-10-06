@@ -3,6 +3,8 @@ package orm.repository.impl.jooq
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
 import orm.domain.Project
+import orm.domain.Task
+import orm.domain.Version
 import orm.jooq.Tables.*
 import orm.jooq.tables.records.ProjectsRecord
 import orm.jooq.tables.records.UsersRecord
@@ -11,7 +13,19 @@ import orm.repository.ProjectRepository
 @Repository
 class ProjectDao(private val create: DSLContext) : ProjectRepository {
 
-    override fun create(project: Project): Project {
+    override fun createTask(projectId: String, versionName: String, task: Task): Task {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun createVersion(projectId: String, versionName: String): Version {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun createProject(project: Project): Project {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun findByProjectId(userId: String): Project? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -33,9 +47,9 @@ class ProjectDao(private val create: DSLContext) : ProjectRepository {
     private fun fromRow(m: Map.Entry<UsersRecord, List<ProjectsRecord>>): List<Project> {
         return m.value.map {
             Project(
-                    id = it.id,
-                    title = it.name,
-                    subTitle = "",
+//                    id = it.id,
+                    name = it.name,
+                    catchPhrase = "",
                     logoUrl = ""
             )
         }
